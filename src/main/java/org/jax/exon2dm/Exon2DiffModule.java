@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 
+import org.jax.exon2dm.ensembl.EnsemblGene;
+import org.jax.exon2dm.ensembl.JEnsembl;
 import org.jax.exon2dm.ensembl.RestClient;
 
 
@@ -25,7 +27,7 @@ public class Exon2DiffModule {
         Exon2DiffModule e2m=new Exon2DiffModule();
         try {
             e2m.testSchema(args);
-
+            //e2m.testJEnsembl();
         } catch (Exception e) {
             logger.error(e,e);
         }
@@ -35,9 +37,16 @@ public class Exon2DiffModule {
 
     public Exon2DiffModule(){}
 
+
+    public void testJEnsembl() throws Exception {
+        JEnsembl jEnsembl=new JEnsembl();
+        jEnsembl.downloadGenes();
+    }
+
+
+
     public void testSchema(String args[]) throws Exception {
-        RestClient rc=new RestClient();
-        rc.run(args);
+        EnsemblGene gene = new EnsemblGene("ENSMUSG00000024241");
 
     }
 

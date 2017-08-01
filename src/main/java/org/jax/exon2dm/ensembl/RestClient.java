@@ -20,6 +20,58 @@ public class RestClient {
     public static int requestCount = 0;
     public static long lastRequestTime = System.currentTimeMillis();
 
+
+
+
+    public static void runOverlap() throws  Exception {
+            String server = "https://rest.ensembl.org";
+            String ext = "/overlap/id/ENSG00000157764?feature=gene";
+            ext="/lookup/id/ENSMUSG00000024241?content-type=application/json;expand=1";
+            // get external refs. http://rest.ensembl.org/xrefs/id/ENSMUSG00000024241?content-type=application/json
+        // Overlap with protein domains http://rest.ensembl.org/overlap/translation/ENSMUSP00000067786?content-type=application/json;type=Superfamily
+            URL url = new URL(server + ext);
+
+            URLConnection connection = url.openConnection();
+            HttpURLConnection httpConnection = (HttpURLConnection)connection;
+
+            httpConnection.setRequestProperty("Content-Type", "application/json");
+
+
+            InputStream response = connection.getInputStream();
+            int responseCode = httpConnection.getResponseCode();
+
+            if(responseCode != 200) {
+                throw new RuntimeException("Response code was not 200. Detected response was "+responseCode);
+            }
+
+            String output;
+            Reader reader = null;
+            try {
+                reader = new BufferedReader(new InputStreamReader(response, "UTF-8"));
+                StringBuilder builder = new StringBuilder();
+                char[] buffer = new char[8192];
+                int read;
+                while ((read = reader.read(buffer, 0, buffer.length)) > 0) {
+                    builder.append(buffer, 0, read);
+                }
+                output = builder.toString();
+            }
+            finally {
+                if (reader != null) try {
+                    reader.close();
+                } catch (IOException logOrIgnore) {
+                    logOrIgnore.printStackTrace();
+                }
+            }
+
+            System.out.println(output);
+        }
+
+
+
+
+
+
     public static void run(String[] args) throws Exception {
         String species, symbol;
         if(args.length == 2) {
