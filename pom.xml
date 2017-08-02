@@ -17,60 +17,8 @@
     </properties>
 
 
-    <repositories>
-        <repository>
-        <id>developer</id>
-        <name>ArkDB</name>
-        <releases>
-            <enabled>true</enabled>
-            <checksumPolicy>ignore</checksumPolicy>
-        </releases>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-        <url>http://jensembl.sourceforge.net/m2-repo</url>
-        <layout>default</layout>
-    </repository>
-    <repository>
-        <id>biojava-maven-repo</id>
-        <name>BioJava repository</name>
-        <url>http://www.biojava.org/download/maven/</url>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-        <releases>
-            <enabled>true</enabled>
-            <checksumPolicy>ignore</checksumPolicy>
-        </releases>
-    </repository>
-        <repository>
-            <id>central</id>
-            <name>Central Repository</name>
-            <url>http://repo1.maven.org/maven2</url>
-        </repository>
-        <repository>
-            <id>maven2-repository.dev.java.net</id>
-            <name>Java.net Repository for Maven 2</name>
-            <url>http://download.java.net/maven/2/</url>
-        </repository>
-        <repository>
-            <id>mc-release</id>
-            <name>Google Code Repo</name>
-            <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
-        </repository>
-    </repositories>
 
     <dependencies>
-    <dependency>
-        <groupId>uk.ac.roslin</groupId>
-        <artifactId>ensembl-data-access</artifactId>
-        <version>1.78</version>
-    </dependency>
-    <dependency>
-        <groupId>uk.ac.roslin</groupId>
-        <artifactId>ensembl-config</artifactId>
-        <version>1.78</version>
-    </dependency>
 
     <dependency>
             <groupId>junit</groupId>
